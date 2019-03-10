@@ -12,15 +12,21 @@ nunjucks.configure('views', {
 app.use(express.urlencoded({ extended: false }))
 app.set('view engine', 'njk')
 
+const middleware = (req, res, next) => {
+  if (!req.query.age) return res.redirect('/')
+
+  return next()
+}
+
 app.get('/', (req, res) => {
   return res.render('age')
 })
 
-app.get('/major', (req, res) => {
+app.get('/major', middleware, (req, res) => {
   return res.render('major', { age: req.query.age })
 })
 
-app.get('/minor', (req, res) => {
+app.get('/minor', middleware, (req, res) => {
   return res.render('minor', { age: req.query.age })
 })
 
