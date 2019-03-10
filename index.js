@@ -13,7 +13,13 @@ app.use(express.urlencoded({ extended: false }))
 app.set('view engine', 'njk')
 
 app.get('/', (req, res) => {
-  return console.log('My app')
+  return res.render('age')
+})
+
+app.post('/check', (req, res) => {
+  if (req.body.age >= 18) return res.redirect('/major')
+
+  return res.redirect('/minor')
 })
 
 app.listen(3000)
