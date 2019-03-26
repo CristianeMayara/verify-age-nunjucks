@@ -1,4 +1,6 @@
-# NodeJS - Challenge 01
+# NodeJS - Verify Age
+
+Simple application using Nunjucks.
 
 ## Technologies
 
